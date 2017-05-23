@@ -1,0 +1,10 @@
+#!/bin/bash
+set -euo pipefail
+
+ZIP="$(pwd)/out.zip"
+
+virtualenv .env
+.env/bin/pip install requests
+zip -g $ZIP lambda_function.py
+cd .env/lib/python3.6/site-packages
+zip -r9 $ZIP *
